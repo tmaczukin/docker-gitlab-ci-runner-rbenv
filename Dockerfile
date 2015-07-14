@@ -26,5 +26,6 @@ RUN echo 'gem: --no-rdoc --no-ri' >> ~/.gemrc
 
 RUN . ~/.profile; rbenv install 2.2.0
 RUN . ~/.profile; rbenv global 2.2.0
+RUN . ~/.profile; gem install bundler
 
 USER root
