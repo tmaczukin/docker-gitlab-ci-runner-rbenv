@@ -12,14 +12,11 @@ RUN apt-get install -y git-core build-essential \
                         libxml2-dev libxslt-dev libffi-dev locales && \
                         apt-get clean
 
-RUN echo $TZ > /etc/timezone; \
-    sed -i "s/^# pl_PL.UTF-8/pl_PL.UTF-8/" /etc/locale.gen; \
-    locale-gen
 ENV TZ Europe/Warsaw
 ENV LANG pl_PL.UTF-8
 ENV LC_ALL pl_PL.UTF-8
 ENV LANGUAGE pl_PL.UTF-8
-RUN dpkg-reconfigure locales; dpkg-reconfigure tzdata
+RUN locale-gen pl_PL.UTF-8; echo $TZ > /etc/timezone; dpkg-reconfigure tzdata
 
 user gitlab_ci_runner
 WORKDIR /home/gitlab_ci_runner
